@@ -4,38 +4,19 @@
 # continue reduzindo dessa forma até que um número de um dígito seja produzido. 
 # A entrada será um número inteiro não negativo.
 
-# Uma outra função para fazer recursividade em outra função, minimizando a funcionalidade de cada uma
-def verifica_mais(n):
-    variavel = 0
-    if (len(n) >= 2):
-        #faço a soma dos digitos
-        for i in range(len(n)):
-            variavel += int(n[i])
-
-    n = str(variavel)
-
-    if (len(n) >= 2):
-        variavel = 0
-        #faço a soma dos digitos mais uma vez
-        for i in range(len(n)):
-            variavel += int(n[i])  
-        return variavel
-    else:
-        return variavel
-
-
 def digital_root(n):
     n = str(n)
     soma = 0
-    #faço a soma dos digitos
-    for i in range(len(n)):
-        soma += int(n[i])
 
-    n = str(soma)
+    while len(n) > 1:
+        soma = 0
+        for i in range(len(n)):
+            soma += int(n[i])
+        n = str(soma)   
+    return soma    
 
-    if (len(n) >= 2):
-        #verifico a soma dos digitos mais uma vez, só que agora em outra função
-        return verifica_mais(n)
-    else:
-        #se não tiver mais que 2 digitos, apenas retorne 
-        return int(n)
+
+print(digital_root(16)) # 1 + 6 = 7
+print(digital_root(942)) # 9 + 4 + 2 = 15 -> 1 + 5 = 6
+print(digital_root(132189)) # 1 + 3 + 2 + 1 + 8 + 9 = 24 -> 2 + 4 = 6
+print(digital_root(493193)) # 4 + 9 + 3 + 1 + 9 + 3 = 29 -> 2 + 9 = 11 -> 1 + 1 = 2      
